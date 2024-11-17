@@ -25,6 +25,18 @@ class OrdInd
 
         void ReadFile();
 
+        // Compare functions
+        static bool CompareByName(const Pessoa& a, const Pessoa& b);
+        static bool CompareByCPF(const Pessoa& a, const Pessoa& b);
+        static bool CompareByEnd(const Pessoa& a, const Pessoa& b);
+
+        // Quicksort functions
+        int Partition(int low, int high, bool (*compare)(const Pessoa&, const Pessoa&));
+        void Quicksort(int low, int high, bool(*compare)(const Pessoa&, const Pessoa&));
+
+        int GetLines() { return _fileLines; };
+
+        // Print the sorted table
         void SortedPrint() const;
 };
 

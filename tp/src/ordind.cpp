@@ -54,6 +54,44 @@ void OrdInd::ReadFile()
     file.close();
 }
 
+bool OrdInd::CompareByName(const Pessoa& a, const Pessoa& b)
+{
+    return a.GetName() < b.GetName();
+}
+
+bool OrdInd::CompareByCPF(const Pessoa& a, const Pessoa& b)
+{
+    return a.GetCPF() < b.GetCPF();
+}
+
+bool OrdInd::CompareByEnd(const Pessoa& a, const Pessoa& b)
+{
+    return a.GetEnd() < b.GetEnd();
+}
+
+int OrdInd::Partition(int low, int high, bool (*compare)(const Pessoa&, const Pessoa&)) {
+    Pessoa pivot = _elements[high];
+    int i = low - 1;
+
+    for (int j = low; j < high; ++j) {
+        if (compare(_elements[j], pivot)) {
+            ++i;
+            std::swap(_elements[i], _elements[j]);
+        }
+    }
+
+    std::swap(_elements[i + 1], _elements[high]);
+    return i + 1;
+}
+
+void OrdInd::Quicksort(int low, int high, bool (*compare)(const Pessoa&, const Pessoa&)) {
+    if (low < high) {
+        int pivotIndex = Partition(low, high, compare);
+        Quicksort(low, pivotIndex - 1, compare);
+        Quicksort(pivotIndex + 1, high, compare);
+    }
+}
+
 void OrdInd::SortedPrint() const
 {
     int i;
