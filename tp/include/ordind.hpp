@@ -30,6 +30,9 @@ class OrdInd
         static bool CompareByCPF(const Pessoa& a, const Pessoa& b);
         static bool CompareByEnd(const Pessoa& a, const Pessoa& b);
 
+        // Swap function
+        void Swap(Pessoa& a, Pessoa& b);
+
         // Quicksort functions
         int Partition(int low, int high, bool (*compare)(const Pessoa&, const Pessoa&));
         void Quicksort(int low, int high, bool(*compare)(const Pessoa&, const Pessoa&));

@@ -69,6 +69,13 @@ bool OrdInd::CompareByEnd(const Pessoa& a, const Pessoa& b)
     return a.GetEnd() < b.GetEnd();
 }
 
+void OrdInd::Swap(Pessoa& a, Pessoa& b)
+{
+    Pessoa temp = a;
+    a = b;
+    b = temp;
+}
+
 int OrdInd::Partition(int low, int high, bool (*compare)(const Pessoa&, const Pessoa&)) {
     Pessoa pivot = _elements[high];
     int i = low - 1;
@@ -76,11 +83,11 @@ int OrdInd::Partition(int low, int high, bool (*compare)(const Pessoa&, const Pe
     for (int j = low; j < high; ++j) {
         if (compare(_elements[j], pivot)) {
             ++i;
-            std::swap(_elements[i], _elements[j]);
+            Swap(_elements[i], _elements[j]);
         }
     }
 
-    std::swap(_elements[i + 1], _elements[high]);
+    Swap(_elements[i + 1], _elements[high]);
     return i + 1;
 }
 
