@@ -34,8 +34,15 @@ class OrdInd
         void Swap(Pessoa& a, Pessoa& b);
 
         // Quicksort functions
-        int Partition(int low, int high, bool (*compare)(const Pessoa&, const Pessoa&));
+        int Partition(int low, int high, bool(*compare)(const Pessoa&, const Pessoa&));
         void Quicksort(int low, int high, bool(*compare)(const Pessoa&, const Pessoa&));
+
+        // Bubblesort function
+        void Bubblesort(bool (*compare)(const Pessoa&, const Pessoa&));
+
+        // Mergesort functions
+        void Merge(int left, int mid, int right, bool (*compare)(const Pessoa&, const Pessoa&));
+        void Mergesort(int left, int right, bool (*compare)(const Pessoa&, const Pessoa&));
 
         int GetLines() { return _fileLines; };
 
