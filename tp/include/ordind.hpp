@@ -15,13 +15,14 @@ class OrdInd
         int _fileLines;
         int _keys;
         Pessoa * _elements;
+        std::string * _columns;
 
     public:
         // Constructor
-        OrdInd(): _fileName("teste.csv"), _fileLines(0), _keys(0), _elements(nullptr) {};
+        OrdInd(): _fileName("teste.csv"), _fileLines(0), _keys(0), _elements(nullptr), _columns(nullptr) {};
 
         // Destructor
-        ~OrdInd() { if(_elements) delete[] _elements; };
+        ~OrdInd() { if(_elements) delete[] _elements; if(_columns) delete[] _columns; };
 
         void ReadFile();
 

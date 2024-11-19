@@ -17,24 +17,42 @@ void OrdInd::ReadFile()
         ++this->_fileLines;
     }
 
-    // Count columns (keys) of file
-    if (std::getline(file, line))
-    {
-        std::stringstream ss(line);
-        std::string column;
-
-        while (std::getline(ss, column, ','))
-        {
-            _keys++;
-        }
-    }
-
     // alocate memory
     _elements = new Pessoa[_fileLines];
 
     // go back to file begining
     file.clear();
     file.seekg(0, std::ios::beg);
+
+    // Extract columns (keys) of file
+    if (std::getline(file, line))
+    {
+        for (size_t i = 0; i < line.length(); ++i)
+        {
+            if(line[i] == ',') _keys++;
+        }
+        _keys++; // the last column does not have comma
+        
+        int k = 0;
+        std::string temp = "";
+        _columns = new std::string[_keys];
+        for (size_t j = 0; j < line.length(); ++j)
+        {
+            if(line[j] == ',')
+            {
+                _columns[k] = temp;  
+                temp = "";
+                k++;
+            }
+            else temp += line[j];
+        }
+    }
+
+    std::cout << "Keys: " << std::endl; 
+    for(int a = 0; a < _keys; a++)
+    {
+        std::cout << _columns[a] << std::endl;
+    }
 
     int i=0;
     while(std::getline(file, line))
