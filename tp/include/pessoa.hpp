@@ -7,19 +7,19 @@ class Pessoa
 {
     private:
         std::string _name;
-        std::string _cpf;
+        std::string _id;
         std::string _end;
         std::string _others;
 
     public:
         Pessoa() {};
         Pessoa(std::string name, 
-               std::string cpf, 
+               std::string id, 
                std::string end,
                std::string others);
 
         std::string GetName() const;
-        std::string GetCPF() const;
+        std::string GetID() const;
         std::string GetEnd() const;
         std::string GetOthers() const;
 };

@@ -14,20 +14,21 @@ class OrdInd
         std::string _fileName;
         int _fileLines;
         int _keys;
+        std::string * _columns;
         Pessoa * _elements;
 
     public:
         // Constructor
-        OrdInd(): _fileName("teste.csv"), _fileLines(0), _keys(0), _elements(nullptr) {};
+        OrdInd(): _fileName("cad.r1000.p1000.xcsv"), _fileLines(0), _keys(0), _columns(nullptr), _elements(nullptr) {};
 
         // Destructor
-        ~OrdInd() { if(_elements) delete[] _elements; };
+        ~OrdInd() { if(_elements) delete[] _elements; if(_columns) delete[] _columns; };
 
         void ReadFile();
 
         // Compare functions
         static bool CompareByName(const Pessoa& a, const Pessoa& b);
-        static bool CompareByCPF(const Pessoa& a, const Pessoa& b);
+        static bool CompareByID(const Pessoa& a, const Pessoa& b);
         static bool CompareByEnd(const Pessoa& a, const Pessoa& b);
 
         // Swap function

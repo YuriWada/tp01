@@ -11,57 +11,70 @@ void OrdInd::ReadFile()
     }
 
     std::string line;
-    // Count lines of file
-    while (std::getline(file, line))
-    {
-        ++this->_fileLines;
-    }
 
-    // Count columns (keys) of file
-    if (std::getline(file, line))
-    {
-        std::stringstream ss(line);
-        std::string column;
+    // Primeira linha: número de colunas
+    std::getline(file, line);
+    _keys = std::stoi(line);
 
-        while (std::getline(ss, column, ','))
+    // Linhas 2 a 5: nomes das colunas (tipos ignorados)
+    // _columns = new std::string[_keys];
+    // for (int i = 0; i < _keys; ++i)
+    // {
+    //     std::getline(file, line);
+    //     _columns[i] = line.substr(0, line.find(',')); // Extrai o nome da coluna
+    // }
+
+    std::string temp = "";
+    _columns = new std::string[_keys];
+    for (size_t i = 0; i < _keys; ++i)
+    {
+        std::getline(file, line);
+        for (size_t j = 0; j < line.length(); ++j)
         {
-            _keys++;
+            if (line[j] == ',')
+            {
+                _columns[i] = temp;
+                temp = "";
+                break;
+            }
+            else temp += line[j];
         }
     }
 
-    // alocate memory
+    // Sexta linha: número de linhas de dados
+    std::getline(file, line);
+    _fileLines = std::stoi(line);
+
+    // Alocar memória para os dados
     _elements = new Pessoa[_fileLines];
 
-    // go back to file begining
-    file.clear();
-    file.seekg(0, std::ios::beg);
-
-    int i=0;
-    while(std::getline(file, line))
+    // Linhas de dados (a partir da 7ª linha)
+    for (int i = 0; i < _fileLines; ++i)
     {
+        std::getline(file, line);
         std::stringstream ss(line);
-        std::string name, cpf, end, others;
 
+        std::string name, id, address, payload;
         std::getline(ss, name, ',');
-        std::getline(ss, cpf, ',');
-        std::getline(ss, end, ',');
-        std::getline(ss, others, ',');
+        std::getline(ss, id, ',');
+        std::getline(ss, address, ',');
+        std::getline(ss, payload, ',');
 
-        Pessoa pessoa(name, cpf, end, others);
-        _elements[i++] = pessoa;
+        _elements[i] = Pessoa(name, id, address, payload);
     }
 
     file.close();
 }
+
 
 bool OrdInd::CompareByName(const Pessoa& a, const Pessoa& b)
 {
     return a.GetName() < b.GetName();
 }
 
-bool OrdInd::CompareByCPF(const Pessoa& a, const Pessoa& b)
+bool OrdInd::CompareByID(const Pessoa& a, const Pessoa& b)
 {
-    return a.GetCPF() < b.GetCPF();
+    return a.GetID() < b.GetID();
 }
 
 bool OrdInd::CompareByEnd(const Pessoa& a, const Pessoa& b)
@@ -176,9 +189,9 @@ void OrdInd::SortedPrint() const
     int i;
     for (i = 0; i < _fileLines; ++i)
     {
-        std::cout << _elements[i].GetName() << " "
-                  << _elements[i].GetCPF() << " "
-                  << _elements[i].GetEnd() << " "
+        std::cout << _elements[i].GetName() << ","
+                  << _elements[i].GetID() << ","
+                  << _elements[i].GetEnd() << ","
                   << _elements[i].GetOthers()
                   << std::endl;
     }
