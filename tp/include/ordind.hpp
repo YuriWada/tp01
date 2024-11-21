@@ -14,36 +14,51 @@ class OrdInd
         std::string _fileName;
         int _fileLines;
         int _keys;
-        Pessoa * _elements;
+        std::string ** _elements;
         std::string * _columns;
+        int _namei;
+        int _cpfi;
+        int _endi;
 
     public:
         // Constructor
-        OrdInd(): _fileName("teste.csv"), _fileLines(0), _keys(0), _elements(nullptr), _columns(nullptr) {};
+        OrdInd(): _fileName("teste.csv"), 
+                  _fileLines(0), 
+                  _keys(1), 
+                  _elements(nullptr), 
+                  _columns(nullptr), 
+                  _namei(0), 
+                  _cpfi(1), 
+                  _endi(2) 
+                  {};
 
         // Destructor
-        ~OrdInd() { if(_elements) delete[] _elements; if(_columns) delete[] _columns; };
+        ~OrdInd();
 
+        int my_strcmp(const char *str1, const char *str2);
         void ReadFile();
 
+        void find_index();
+
         // Compare functions
-        static bool CompareByName(const Pessoa& a, const Pessoa& b);
-        static bool CompareByCPF(const Pessoa& a, const Pessoa& b);
-        static bool CompareByEnd(const Pessoa& a, const Pessoa& b);
+        int GetNameIndex() { return _namei; };
+        int GetCPFIndex() { return _cpfi; };
+        int GetEndIndex() { return _endi; };
 
         // Swap function
-        void Swap(Pessoa& a, Pessoa& b);
+        template <typename T>
+        void Swap(T& a, T& b);
 
         // Quicksort functions
-        int Partition(int low, int high, bool(*compare)(const Pessoa&, const Pessoa&));
-        void Quicksort(int low, int high, bool(*compare)(const Pessoa&, const Pessoa&));
+        int Partition(int low, int high, int columnIndex);
+        void Quicksort(int low, int high, int columnIndex);
 
         // Bubblesort function
-        void Bubblesort(bool (*compare)(const Pessoa&, const Pessoa&));
+        void Bubblesort(int columnIndex);
 
         // Mergesort functions
-        void Merge(int left, int mid, int right, bool (*compare)(const Pessoa&, const Pessoa&));
-        void Mergesort(int left, int right, bool (*compare)(const Pessoa&, const Pessoa&));
+        void Merge(int left, int mid, int right, int columnIndex);
+        void Mergesort(int left, int right, int columnIndex);
 
         int GetLines() { return _fileLines; };
 

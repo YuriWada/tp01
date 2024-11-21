@@ -1,6 +1,30 @@
 #include "../include/ordind.hpp"
 #include "pessoa.cpp"
 
+OrdInd::~OrdInd()
+{
+    if (_elements) {
+        for (size_t i = 0; i < _fileLines; ++i) {
+            delete[] _elements[i];
+        }
+        delete[] _elements;
+    }
+    
+    delete[] _columns;
+}
+
+
+int OrdInd::my_strcmp(const char *str1, const char *str2)
+{
+    while (*str1 && *str2 && (*str1 == *str2)) {
+        str1++;
+        str2++;
+    }
+
+    // return the difference between the chars (zero if equals)
+    return *(unsigned char *)str1 - *(unsigned char *)str2;
+}
+
 void OrdInd::ReadFile()
 {
     std::ifstream file(this->_fileName);
@@ -11,96 +35,109 @@ void OrdInd::ReadFile()
     }
 
     std::string line;
-    // Count lines of file
+
+    // Contar linhas do arquivo (excluindo cabeçalho)
     while (std::getline(file, line))
     {
-        ++this->_fileLines;
+        ++_fileLines;
     }
 
-    // alocate memory
-    _elements = new Pessoa[_fileLines];
+    if (_fileLines == 0)
+    {
+        std::cerr << "O arquivo está vazio ou não contém dados válidos." << std::endl;
+        return;
+    }
 
-    // go back to file begining
+    _fileLines--; // Excluir a linha do cabeçalho
+
+    // Reiniciar o stream para voltar ao início do arquivo
     file.clear();
     file.seekg(0, std::ios::beg);
 
-    // Extract columns (keys) of file
+    // Extrair colunas (cabeçalhos)
     if (std::getline(file, line))
     {
-        for (size_t i = 0; i < line.length(); ++i)
+         for (size_t i = 0; i < line.length(); ++i)
         {
-            if(line[i] == ',') _keys++;
+            if (line[i] == ',') _keys++;
         }
-        _keys++; // the last column does not have comma
-        
+
         int k = 0;
         std::string temp = "";
         _columns = new std::string[_keys];
-        for (size_t j = 0; j < line.length(); ++j)
+        for (size_t j = 0; j < line.length() - 1; ++j)
         {
-            if(line[j] == ',')
+            if (line[j] == ',')
             {
-                _columns[k] = temp;  
+                _columns[k] = temp;
                 temp = "";
                 k++;
             }
             else temp += line[j];
         }
+        _columns[k] = temp; // Add the last column
     }
 
-    std::cout << "Keys: " << std::endl; 
-    for(int a = 0; a < _keys; a++)
+    // Alocar memória para os elementos
+    _elements = new std::string*[_fileLines];
+    for (size_t l = 0; l < _fileLines; ++l)
     {
-        std::cout << _columns[a] << std::endl;
+        _elements[l] = new std::string[_keys];
     }
 
-    int i=0;
-    while(std::getline(file, line))
+    // Salvar os elementos das linhas
+    size_t w = 0;
+    while (std::getline(file, line))
     {
-        std::stringstream ss(line);
-        std::string name, cpf, end, others;
-
-        std::getline(ss, name, ',');
-        std::getline(ss, cpf, ',');
-        std::getline(ss, end, ',');
-        std::getline(ss, others, ',');
-
-        Pessoa pessoa(name, cpf, end, others);
-        _elements[i++] = pessoa;
+        size_t k = 0;
+        std::string temp;
+        for (char c : line)
+        {
+            if (c == ',')
+            {
+                _elements[w][k++] = temp;
+                temp.clear();
+            }
+            else
+            {
+                temp += c;
+            }
+        }
+        _elements[w][k] = temp; // Última coluna
+        ++w;
     }
 
     file.close();
 }
 
-bool OrdInd::CompareByName(const Pessoa& a, const Pessoa& b)
+
+void OrdInd::find_index()
 {
-    return a.GetName() < b.GetName();
+    for (size_t i = 0; i < _keys; i++)
+    {
+        if(my_strcmp(_columns[i].c_str(), "Nome") == 0) _namei = i;
+        else if(my_strcmp(_columns[i].c_str(), "CPF") == 0) _cpfi = i;
+        else if(my_strcmp(_columns[i].c_str(), "End") == 0) _endi = i;
+    }
 }
 
-bool OrdInd::CompareByCPF(const Pessoa& a, const Pessoa& b)
+template <typename T>
+void OrdInd::Swap(T& a, T& b)
 {
-    return a.GetCPF() < b.GetCPF();
-}
-
-bool OrdInd::CompareByEnd(const Pessoa& a, const Pessoa& b)
-{
-    return a.GetEnd() < b.GetEnd();
-}
-
-void OrdInd::Swap(Pessoa& a, Pessoa& b)
-{
-    Pessoa temp = a;
+    T temp = a;
     a = b;
     b = temp;
 }
 
-int OrdInd::Partition(int low, int high, bool (*compare)(const Pessoa&, const Pessoa&))
+int OrdInd::Partition(int low, int high, int columnIndex)
 {
-    Pessoa pivot = _elements[high];
+    std::string* pivot = _elements[high];
     int i = low - 1;
 
-    for (int j = low; j < high; ++j) {
-        if (compare(_elements[j], pivot)) {
+    for (int j = low; j < high; ++j)
+    {
+        if (_elements[j][columnIndex] < pivot[columnIndex]) // Index-based comparison
+        {
             ++i;
             Swap(_elements[i], _elements[j]);
         }
@@ -110,94 +147,111 @@ int OrdInd::Partition(int low, int high, bool (*compare)(const Pessoa&, const Pe
     return i + 1;
 }
 
-void OrdInd::Quicksort(int low, int high, bool (*compare)(const Pessoa&, const Pessoa&))
+
+void OrdInd::Quicksort(int low, int high, int columnIndex)
 {
-    if (low < high) {
-        int pivotIndex = Partition(low, high, compare);
-        Quicksort(low, pivotIndex - 1, compare);
-        Quicksort(pivotIndex + 1, high, compare);
+    if (low < high)
+    {
+        int pivotIndex = Partition(low, high, columnIndex);
+        Quicksort(low, pivotIndex - 1, columnIndex);
+        Quicksort(pivotIndex + 1, high, columnIndex);
     }
 }
 
-void OrdInd::Bubblesort(bool (*compare)(const Pessoa&, const Pessoa&))
+
+void OrdInd::Bubblesort(int columnIndex)
 {
-    for (int i = 0; i < _fileLines - 1; ++i) {
-        for (int j = 0; j < _fileLines - i - 1; ++j) {
-            if (!compare(_elements[j], _elements[j + 1])) {
+    for (int i = 0; i < _fileLines - 1; ++i)
+    {
+        for (int j = 0; j < _fileLines - i - 1; ++j)
+        {
+            if (_elements[j][columnIndex] > _elements[j + 1][columnIndex]) // Index-based comparison
+            {
                 Swap(_elements[j], _elements[j + 1]);
             }
         }
     }
 }
 
-void OrdInd::Merge(int left, int mid, int right, bool (*compare)(const Pessoa&, const Pessoa&))
+
+void OrdInd::Merge(int left, int mid, int right, int columnIndex)
 {
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
-    // temp arrays
-    Pessoa* leftArray = new Pessoa[n1];
-    Pessoa* rightArray = new Pessoa[n2];
+    // Temp arrays
+    std::string** leftArray = new std::string*[n1];
+    std::string** rightArray = new std::string*[n2];
 
-    // copy data to temp array
+    // Copy the temp arrays
     for (int i = 0; i < n1; ++i)
         leftArray[i] = _elements[left + i];
     for (int j = 0; j < n2; ++j)
         rightArray[j] = _elements[mid + 1 + j];
 
-    // merge temp arrays
+    // Merge temp arrays to original
     int i = 0, j = 0, k = left;
-    while (i < n1 && j < n2) {
-        if (compare(leftArray[i], rightArray[j])) {
+    while (i < n1 && j < n2)
+    {
+        if (leftArray[i][columnIndex] <= rightArray[j][columnIndex]) // Index-based comparison
+        {
             _elements[k] = leftArray[i];
             i++;
-        } else {
+        }
+        else
+        {
             _elements[k] = rightArray[j];
             j++;
         }
         k++;
     }
 
-    // copy remain elements
-    while (i < n1) {
+    while (i < n1)
+    {
         _elements[k] = leftArray[i];
         i++;
         k++;
     }
 
-    while (j < n2) {
+    while (j < n2)
+    {
         _elements[k] = rightArray[j];
         j++;
         k++;
     }
 
-    // free
     delete[] leftArray;
     delete[] rightArray;
 }
 
-void OrdInd::Mergesort(int left, int right, bool (*compare)(const Pessoa&, const Pessoa&))
+
+void OrdInd::Mergesort(int left, int right, int columnIndex)
 {
-    if (left < right) {
+    if (left < right)
+    {
         int mid = left + (right - left) / 2;
 
-        OrdInd::Mergesort(left, mid, compare);
-        OrdInd::Mergesort(mid + 1, right, compare);
+        Mergesort(left, mid, columnIndex);
+        Mergesort(mid + 1, right, columnIndex);
 
-        // merge sorted subarrays
-        OrdInd::Merge(left, mid, right, compare);
+        // Mesclar os subarrays ordenados
+        Merge(left, mid, right, columnIndex);
     }
 }
 
+
 void OrdInd::SortedPrint() const
 {
-    int i;
-    for (i = 0; i < _fileLines; ++i)
+    for (int i = 0; i < _fileLines; ++i)
     {
-        std::cout << _elements[i].GetName() << " "
-                  << _elements[i].GetCPF() << " "
-                  << _elements[i].GetEnd() << " "
-                  << _elements[i].GetOthers()
-                  << std::endl;
+        for (int j = 0; j < _keys; ++j)
+        {
+            std::cout << _elements[i][j];
+            if (j < _keys - 1) 
+            {
+                std::cout << " ";
+            }
+        }
+        std::cout << std::endl;
     }
 }

@@ -6,11 +6,13 @@ int main()
 {
     OrdInd ordind;
     ordind.ReadFile();
+    ordind.find_index();
+    
 
-    // printf("---QUICKSORT---\n");
-    // ordind.Quicksort(0, ordind.GetLines() - 1, ordind.CompareByName);
-    // ordind.SortedPrint();
-    // printf("\n");
+    printf("---QUICKSORT---\n");
+    ordind.Quicksort(0, ordind.GetLines() - 1, ordind.GetNameIndex());
+    ordind.SortedPrint();
+    printf("\n");
 
     // ordind.Quicksort(0, ordind.GetLines() - 1, ordind.CompareByCPF);
     // ordind.SortedPrint();
