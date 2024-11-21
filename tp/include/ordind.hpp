@@ -16,6 +16,7 @@ class OrdInd
         int _keys;
         std::string * _columns;
         Pessoa * _elements;
+        std::string * _columns;
 
     public:
         // Constructor
