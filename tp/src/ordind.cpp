@@ -1,5 +1,5 @@
 #include "../include/ordind.hpp"
-#include "pessoa.cpp"
+#include "../include/pessoa.hpp"
 
 void OrdInd::ReadFile()
 {
@@ -18,7 +18,7 @@ void OrdInd::ReadFile()
 
     std::string temp = "";
     _columns = new std::string[_keys];
-    for (size_t i = 0; i < _keys; ++i)
+    for (int i = 0; i < _keys; ++i)
     {
         std::getline(file, line);
         for (size_t j = 0; j < line.length(); ++j)

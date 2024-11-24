@@ -116,3 +116,40 @@ void OrdAlg::Mergesort(int left, int right, bool (*compare)(const Pessoa&, const
         OrdAlg::Merge(left, mid, right, compare);
     }
 }
+
+void OrdAlg::Heapify(int n, int i, bool (*compare)(const Pessoa&, const Pessoa&))
+{
+    int largest = i;         // Initialize largest as root
+    int left = 2 * i + 1;    
+    int right = 2 * i + 2;   
+
+    // Para criar um heap mínimo em vez de máximo:
+    if (left < n && !compare(_elements[left], _elements[largest]))
+        largest = left;
+
+    if (right < n && !compare(_elements[right], _elements[largest]))
+        largest = right;
+
+
+    if (largest != i)
+    {
+        Swap(_elements[i], _elements[largest]);
+
+        Heapify(n, largest, compare);
+    }
+}
+
+void OrdAlg::Heapsort(bool (*compare)(const Pessoa&, const Pessoa&))
+{
+    int n = _fileLines;
+
+    for (int i = n / 2 - 1; i >= 0; --i)
+        Heapify(n, i, compare);
+
+    for (int i = n - 1; i > 0; --i)
+    {
+        Swap(_elements[0], _elements[i]);
+
+        Heapify(i, 0, compare);
+    }
+}

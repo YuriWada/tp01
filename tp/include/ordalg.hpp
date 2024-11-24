@@ -40,6 +40,11 @@ class OrdAlg
         void Merge(int left, int mid, int right, bool (*compare)(const Pessoa&, const Pessoa&));
         void Mergesort(int left, int right, bool (*compare)(const Pessoa&, const Pessoa&));
 
+        // Heapsort functions
+        void Heapify(int n, int i, bool (*compare)(const Pessoa&, const Pessoa&));
+        void Heapsort(bool (*compare)(const Pessoa&, const Pessoa&));
+
+
         Pessoa * GetElements() { return _elements; }
 };
 
