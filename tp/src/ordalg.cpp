@@ -5,7 +5,8 @@
  * strcmp() that takes 2 strings and 
  * compare them char by char
  */
-bool OrdAlg::CustomCompareStrings(const char* str1, const char* str2) {
+bool OrdAlg::CustomCompareStrings(const char* str1, const char* str2)
+{
     int len1 = Aux::StringLength(str1);
     int len2 = Aux::StringLength(str2);
     int minLen = Aux::CustomMin(len1, len2);
@@ -23,15 +24,18 @@ bool OrdAlg::CustomCompareStrings(const char* str1, const char* str2) {
 }
 
 // Compare functions 
-bool OrdAlg::CompareByName(const Pessoa& a, const Pessoa& b) {
+bool OrdAlg::CompareByName(const Pessoa& a, const Pessoa& b)
+{
     return CustomCompareStrings(a.GetName().c_str(), b.GetName().c_str());
 }
 
-bool OrdAlg::CompareByID(const Pessoa& a, const Pessoa& b) {
+bool OrdAlg::CompareByID(const Pessoa& a, const Pessoa& b)
+{
     return CustomCompareStrings(a.GetID().c_str(), b.GetID().c_str());
 }
 
-bool OrdAlg::CompareByEnd(const Pessoa& a, const Pessoa& b) {
+bool OrdAlg::CompareByEnd(const Pessoa& a, const Pessoa& b)
+{
     return CustomCompareStrings(a.GetEnd().c_str(), b.GetEnd().c_str());
 }
 
