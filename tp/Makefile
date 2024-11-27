@@ -1,4 +1,4 @@
-# Variáveis
+# Main variables
 CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++17 -g -Iinclude
 LDFLAGS = 
@@ -8,29 +8,29 @@ OBJ_DIR = obj
 BIN_DIR = bin
 TARGET = $(BIN_DIR)/tp1.out
 
-# Arquivos fonte e objetos
+# Source files and objects
 SRCS = tp1.cpp $(SRC_DIR)/aux.cpp $(SRC_DIR)/ordalg.cpp $(SRC_DIR)/ordind.cpp $(SRC_DIR)/pessoa.cpp
 OBJS = $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 
-# Regras
+# Rules
 all: $(TARGET)
 
-# Regra para compilar o binário final
+# Compilation rule
 $(TARGET): $(OBJS)
 	@mkdir -p $(BIN_DIR)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ -o $@
 
-# Regra para compilar os arquivos .cpp em .o
+# .cpp | .o compilation rules
 $(OBJ_DIR)/%.o: %.cpp
 	@mkdir -p $(@D)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Limpeza dos arquivos gerados
+# Clean up files
 clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR)
 
-# Regra para limpar e compilar do zero
+# Rule to clean and compile from zero
 rebuild: clean all
 
-# Declaração de diretórios de dependência
+# Directories dependency
 -include $(OBJS:.o=.d)
