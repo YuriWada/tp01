@@ -1,20 +1,45 @@
 #include "../include/ordalg.hpp"
 
-bool OrdAlg::CompareByName(const Pessoa& a, const Pessoa& b)
-{
-    return a.GetName() < b.GetName();
+/**
+ * Custom compare string is a customized
+ * strcmp() that takes 2 strings and 
+ * compare them char by char
+ */
+bool OrdAlg::CustomCompareStrings(const char* str1, const char* str2) {
+    int len1 = Aux::StringLength(str1);
+    int len2 = Aux::StringLength(str2);
+    int minLen = Aux::CustomMin(len1, len2);
+
+    for (int i = 0; i < minLen; ++i) {
+        if (str1[i] < str2[i]) {
+            return true;
+        } else if (str1[i] > str2[i]) {
+            return false;
+        }
+    }
+
+    // Se todos os caracteres são iguais, a string menor é a menor
+    return len1 < len2;
 }
 
-bool OrdAlg::CompareByID(const Pessoa& a, const Pessoa& b)
-{
-    return a.GetID() < b.GetID();
+// Compare functions 
+bool OrdAlg::CompareByName(const Pessoa& a, const Pessoa& b) {
+    return CustomCompareStrings(a.GetName().c_str(), b.GetName().c_str());
 }
 
-bool OrdAlg::CompareByEnd(const Pessoa& a, const Pessoa& b)
-{
-    return a.GetEnd() < b.GetEnd();
+bool OrdAlg::CompareByID(const Pessoa& a, const Pessoa& b) {
+    return CustomCompareStrings(a.GetID().c_str(), b.GetID().c_str());
 }
 
+bool OrdAlg::CompareByEnd(const Pessoa& a, const Pessoa& b) {
+    return CustomCompareStrings(a.GetEnd().c_str(), b.GetEnd().c_str());
+}
+
+/**
+ * Simples swap function that takes
+ * two objects of 'Pessoa' type
+ * and swap their places
+ */
 void OrdAlg::Swap(Pessoa& a, Pessoa& b)
 {
     Pessoa temp = a;
@@ -123,7 +148,6 @@ void OrdAlg::Heapify(int n, int i, bool (*compare)(const Pessoa&, const Pessoa&)
     int left = 2 * i + 1;    
     int right = 2 * i + 2;   
 
-    // Para criar um heap mínimo em vez de máximo:
     if (left < n && !compare(_elements[left], _elements[largest]))
         largest = left;
 

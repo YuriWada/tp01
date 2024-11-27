@@ -2,6 +2,7 @@
 #define ORDALG_H
 
 #include "pessoa.hpp"
+#include "aux.hpp"
 
 #include <iostream>
 #include <string>
@@ -20,6 +21,8 @@ class OrdAlg
 
         // Destructor
         //~OrdAlg() { if(_elements) delete[] _elements; }
+
+        static bool CustomCompareStrings(const char* str1, const char* str2);
 
         // Compare functions
         static bool CompareByName(const Pessoa& a, const Pessoa& b);

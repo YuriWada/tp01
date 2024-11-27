@@ -6,16 +6,14 @@ SRC_DIR = src
 INCLUDE_DIR = include
 OBJ_DIR = obj
 BIN_DIR = bin
-TARGET = $(BIN_DIR)/tp
+TARGET = $(BIN_DIR)/tp1.out
 
 # Arquivos fonte e objetos
-SRCS = main.cpp $(SRC_DIR)/ordalg.cpp $(SRC_DIR)/ordind.cpp $(SRC_DIR)/pessoa.cpp
+SRCS = tp1.cpp $(SRC_DIR)/aux.cpp $(SRC_DIR)/ordalg.cpp $(SRC_DIR)/ordind.cpp $(SRC_DIR)/pessoa.cpp
 OBJS = $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 
 # Regras
 all: $(TARGET)
-	@echo "Running..."
-	./$(TARGET)
 
 # Regra para compilar o binário final
 $(TARGET): $(OBJS)
