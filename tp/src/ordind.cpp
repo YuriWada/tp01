@@ -40,21 +40,6 @@ void OrdInd::ReadFile()
     // Alocar memória para os dados
     _elements = new Pessoa[_fileLines];
 
-    // Linhas de dados (a partir da 7ª linha)
-    // for (int i = 0; i < _fileLines; ++i)
-    // {
-    //     std::getline(file, line);
-    //     std::stringstream ss(line);
-
-    //     std::string name, id, address, payload;
-    //     std::getline(ss, name, ',');
-    //     std::getline(ss, id, ',');
-    //     std::getline(ss, address, ',');
-    //     std::getline(ss, payload, ',');
-
-    //     _elements[i] = Pessoa(name, id, address, payload);
-    // }
-
     std::string * elements_lines = new std::string[_keys];
     for (int i = 0; i < _fileLines; ++i)
     {
