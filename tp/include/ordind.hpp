@@ -20,7 +20,7 @@ class OrdInd
 
     public:
         // Constructor
-        OrdInd(char **argv): _fileName(argv[1]), _fileLines(0), _keys(0), _columns(nullptr), _elements(nullptr) {}
+        OrdInd(char **argv) : _fileName((argv[1] != nullptr) ? argv[1] : ""), _fileLines(0), _keys(0), _columns(nullptr), _elements(nullptr) {}
 
         // Destructor
         ~OrdInd() { if(_elements) delete[] _elements; if(_columns) delete[] _columns; };

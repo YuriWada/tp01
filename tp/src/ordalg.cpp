@@ -51,100 +51,133 @@ void OrdAlg::Swap(Pessoa& a, Pessoa& b)
     b = temp;
 }
 
-int OrdAlg::Partition(int low, int high, bool (*compare)(const Pessoa&, const Pessoa&))
+void OrdAlg::Partition(int low, int high, int* i, int* j, bool (*compare)(const Pessoa&, const Pessoa&)) 
 {
-    Pessoa pivot = _elements[high];
-    int i = low - 1;
+    Pessoa pivot = _elements[(low + high) / 2]; // Pivot no meio do intervalo
+    *i = low;
+    *j = high;
 
-    for (int j = low; j < high; ++j) {
-        if (compare(_elements[j], pivot)) {
-            ++i;
-            Swap(_elements[i], _elements[j]);
+    do 
+    {
+        // Avança o ponteiro esquerdo enquanto o elemento for menor que o pivot
+        while (compare(_elements[*i], pivot)) 
+        {
+            ++(*i);
         }
-    }
 
-    Swap(_elements[i + 1], _elements[high]);
-    return i + 1;
+        // Regride o ponteiro direito enquanto o elemento for maior que o pivot
+        while (compare(pivot, _elements[*j])) 
+        {
+            --(*j);
+        }
+
+        // Troca elementos fora de lugar e ajusta índices
+        if (*i <= *j) 
+        {
+            Swap(_elements[*i], _elements[*j]);
+            ++(*i);
+            --(*j);
+        }
+
+    } while (*i <= *j);
 }
 
-void OrdAlg::Quicksort(int low, int high, bool (*compare)(const Pessoa&, const Pessoa&))
+void OrdAlg::Quicksort(int low, int high, bool (*compare)(const Pessoa&, const Pessoa&)) 
 {
-    if (low < high) {
-        int pivotIndex = Partition(low, high, compare);
-        Quicksort(low, pivotIndex - 1, compare);
-        Quicksort(pivotIndex + 1, high, compare);
+    int i, j;
+    Partition(low, high, &i, &j, compare); // Ajustado para retornar índices por referência
+
+    // Recursivamente ordena os sub-arrays
+    if (low < j) 
+    {
+        Quicksort(low, j, compare);
+    }
+
+    if (i < high) 
+    {
+        Quicksort(i, high, compare);
     }
 }
 
 void OrdAlg::Bubblesort(bool (*compare)(const Pessoa&, const Pessoa&))
 {
-    for (int i = 0; i < _fileLines - 1; ++i) {
-        for (int j = 0; j < _fileLines - i - 1; ++j) {
-            if (!compare(_elements[j], _elements[j + 1])) {
-                Swap(_elements[j], _elements[j + 1]);
+    for (int i = 0; i < _fileLines - 1; ++i) 
+    {
+        for (int j = 1; j < _fileLines - i; ++j) 
+        {
+            if (compare(_elements[j], _elements[j - 1])) 
+            {
+                Swap(_elements[j - 1], _elements[j]);
             }
         }
     }
 }
 
-void OrdAlg::Merge(int left, int mid, int right, bool (*compare)(const Pessoa&, const Pessoa&))
+void OrdAlg::Merge(int left, int mid, int right, bool (*compare)(const Pessoa&, const Pessoa&)) 
 {
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
-    // temp arrays
+    // Alocar arrays temporários
     Pessoa* leftArray = new Pessoa[n1];
     Pessoa* rightArray = new Pessoa[n2];
 
-    // copy data to temp array
-    for (int i = 0; i < n1; ++i)
+    // Copiar dados para os arrays temporários
+    for (int i = 0; i < n1; ++i) 
+    {
         leftArray[i] = _elements[left + i];
-    for (int j = 0; j < n2; ++j)
+    }
+    for (int j = 0; j < n2; ++j) 
+    {
         rightArray[j] = _elements[mid + 1 + j];
+    }
 
-    // merge temp arrays
+    // Combinar os arrays temporários no array original
     int i = 0, j = 0, k = left;
-    while (i < n1 && j < n2) {
-        if (compare(leftArray[i], rightArray[j])) {
-            _elements[k] = leftArray[i];
-            i++;
-        } else {
-            _elements[k] = rightArray[j];
-            j++;
+
+    while (i < n1 && j < n2) 
+    {
+        if (compare(leftArray[i], rightArray[j])) 
+        {
+            _elements[k++] = leftArray[i++];
+        } 
+        else 
+        {
+            _elements[k++] = rightArray[j++];
         }
-        k++;
     }
 
-    // copy remain elements
-    while (i < n1) {
-        _elements[k] = leftArray[i];
-        i++;
-        k++;
+    // Se ainda houver elementos restantes
+    while (i < n1) 
+    {
+        _elements[k++] = leftArray[i++];
+    }
+    while (j < n2) 
+    {
+        _elements[k++] = rightArray[j++];
     }
 
-    while (j < n2) {
-        _elements[k] = rightArray[j];
-        j++;
-        k++;
-    }
-
-    // free
+    // Liberar memória dos arrays temporários
     delete[] leftArray;
     delete[] rightArray;
 }
 
 void OrdAlg::Mergesort(int left, int right, bool (*compare)(const Pessoa&, const Pessoa&))
 {
-    if (left < right) {
+    if (left < right) 
+    {
         int mid = left + (right - left) / 2;
 
+        // Realizar chamadas recursivas
         OrdAlg::Mergesort(left, mid, compare);
         OrdAlg::Mergesort(mid + 1, right, compare);
 
-        // merge sorted subarrays
+        // Mesclar subarrays ordenados
         OrdAlg::Merge(left, mid, right, compare);
+
     }
 }
+
 
 void OrdAlg::Heapify(int n, int i, bool (*compare)(const Pessoa&, const Pessoa&))
 {

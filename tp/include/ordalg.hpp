@@ -33,7 +33,7 @@ class OrdAlg
         void Swap(Pessoa& a, Pessoa& b);
 
         // Quicksort functions
-        int Partition(int low, int high, bool(*compare)(const Pessoa&, const Pessoa&));
+        void Partition(int low, int high, int* i, int* j, bool (*compare)(const Pessoa&, const Pessoa&));
         void Quicksort(int low, int high, bool(*compare)(const Pessoa&, const Pessoa&));
 
         // Bubblesort function

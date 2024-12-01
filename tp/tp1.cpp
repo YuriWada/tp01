@@ -24,9 +24,9 @@ int main(int argc, char **argv)
     // ordind.SortedPrint();
 
     // Quicksort
-    ordalg.Quicksort(0, ordind.GetLines() - 1, ordalg.CompareByName);
-    ordind.SetElements(ordalg.GetElements());
-    ordind.SortedPrint();
+    // ordalg.Quicksort(0, ordind.GetLines() - 1, ordalg.CompareByName);
+    // ordind.SetElements(ordalg.GetElements());
+    // ordind.SortedPrint();
 
     // ordalg.Quicksort(0, ordind.GetLines() - 1, ordalg.CompareByID);
     // ordind.SetElements(ordalg.GetElements());
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
     // ordind.SetElements(ordalg.GetElements());
     // ordind.SortedPrint();
 
-    // Bubblesort
+    //Bubblesort
     // ordalg.Bubblesort(ordalg.CompareByName);
     // ordind.SortedPrint();
 
@@ -47,14 +47,14 @@ int main(int argc, char **argv)
     // ordind.SortedPrint(); 
 
     // Mergesort
-    // ordalg.Mergesort(0, ordind.GetLines() - 1, ordalg.CompareByName);
-    // ordind.SortedPrint();
+    ordalg.Mergesort(0, ordind.GetLines() - 1, ordalg.CompareByName);
+    ordind.SortedPrint();
 
-    // ordalg.Mergesort(0, ordind.GetLines() - 1, ordalg.CompareByID);
-    // ordind.SortedPrint();
+    ordalg.Mergesort(0, ordind.GetLines() - 1, ordalg.CompareByID);
+    ordind.SortedPrint();
 
-    // ordalg.Mergesort(0, ordind.GetLines() - 1, ordalg.CompareByEnd);
-    // ordind.SortedPrint();
+    ordalg.Mergesort(0, ordind.GetLines() - 1, ordalg.CompareByEnd);
+    ordind.SortedPrint();
 
     return 0;
 }
