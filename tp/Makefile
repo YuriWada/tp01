@@ -1,6 +1,6 @@
 # Main variables
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++17 -g -Iinclude
+CXXFLAGS = -Wall -Wextra -std=c++11 -g -Iinclude
 LDFLAGS = 
 SRC_DIR = src
 INCLUDE_DIR = include
