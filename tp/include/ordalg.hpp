@@ -19,19 +19,6 @@ class OrdAlg
         // Constructor
         OrdAlg(Pessoa * elements, int fileLines) : _elements(elements), _fileLines(fileLines) {}
 
-        // Destructor
-        //~OrdAlg() { if(_elements) delete[] _elements; }
-
-        static bool CustomCompareStrings(const char* str1, const char* str2);
-
-        // Compare functions
-        static bool CompareByName(const Pessoa& a, const Pessoa& b);
-        static bool CompareByID(const Pessoa& a, const Pessoa& b);
-        static bool CompareByEnd(const Pessoa& a, const Pessoa& b);
-
-        // Swap function
-        void Swap(Pessoa& a, Pessoa& b);
-
         // Quicksort functions
         void Partition(int low, int high, int* i, int* j, bool (*compare)(const Pessoa&, const Pessoa&));
         void Quicksort(int low, int high, bool(*compare)(const Pessoa&, const Pessoa&));

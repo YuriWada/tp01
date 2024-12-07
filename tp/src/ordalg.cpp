@@ -1,59 +1,6 @@
 #include "../include/ordalg.hpp"
 
 /**
- * CustomCompareStrings:
- * A custom string comparison function that compares two strings character by character.
- * It returns true if the first string is lexicographically smaller than the second one.
- */
-bool OrdAlg::CustomCompareStrings(const char* str1, const char* str2)
-{
-    int len1 = Aux::StringLength(str1);
-    int len2 = Aux::StringLength(str2);
-    int minLen = Aux::CustomMin(len1, len2);
-
-    for (int i = 0; i < minLen; ++i) {
-        if (str1[i] < str2[i]) {
-            return true;
-        } else if (str1[i] > str2[i]) {
-            return false;
-        }
-    }
-
-    // If all characters are equal, the shorter string is considered smaller.
-    return len1 < len2;
-}
-
-/**
- * Comparison functions:
- * Used to compare 'Pessoa' objects based on different fields.
- */
-bool OrdAlg::CompareByName(const Pessoa& a, const Pessoa& b)
-{
-    return CustomCompareStrings(a.GetName().c_str(), b.GetName().c_str());
-}
-
-bool OrdAlg::CompareByID(const Pessoa& a, const Pessoa& b)
-{
-    return CustomCompareStrings(a.GetID().c_str(), b.GetID().c_str());
-}
-
-bool OrdAlg::CompareByEnd(const Pessoa& a, const Pessoa& b)
-{
-    return CustomCompareStrings(a.GetEnd().c_str(), b.GetEnd().c_str());
-}
-
-/**
- * Swap:
- * Swaps the values of two 'Pessoa' objects.
- */
-void OrdAlg::Swap(Pessoa& a, Pessoa& b)
-{
-    Pessoa temp = a;
-    a = b;
-    b = temp;
-}
-
-/**
  * Partition:
  * Partitions the array around a pivot element for the QuickSort algorithm.
  * Adjusts indices to split the array into two subarrays.
@@ -81,7 +28,7 @@ void OrdAlg::Partition(int low, int high, int* i, int* j, bool (*compare)(const 
         // Swap elements if the pointers have not crossed
         if (*i <= *j) 
         {
-            Swap(_elements[*i], _elements[*j]);
+            Aux::Swap(_elements[*i], _elements[*j]);
             ++(*i);
             --(*j);
         }
@@ -122,7 +69,7 @@ void OrdAlg::Bubblesort(bool (*compare)(const Pessoa&, const Pessoa&))
         {
             if (compare(_elements[j], _elements[j - 1])) 
             {
-                Swap(_elements[j - 1], _elements[j]);
+                Aux::Swap(_elements[j - 1], _elements[j]);
             }
         }
     }
@@ -213,7 +160,7 @@ void OrdAlg::Heapify(int n, int i, bool (*compare)(const Pessoa&, const Pessoa&)
 
     if (largest != i)
     {
-        Swap(_elements[i], _elements[largest]);
+        Aux::Swap(_elements[i], _elements[largest]);
         Heapify(n, largest, compare);
     }
 }
@@ -232,7 +179,7 @@ void OrdAlg::Heapsort(bool (*compare)(const Pessoa&, const Pessoa&))
 
     for (int i = n - 1; i > 0; --i)
     {
-        Swap(_elements[0], _elements[i]);
+        Aux::Swap(_elements[0], _elements[i]);
         Heapify(i, 0, compare);
     }
 }

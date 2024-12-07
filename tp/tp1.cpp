@@ -1,5 +1,6 @@
 #include "include/ordind.hpp"
 #include "include/ordalg.hpp"
+#include "include/aux.hpp"
 
 #include <iostream>
 
@@ -11,49 +12,49 @@ int main(int argc, char **argv)
     OrdAlg ordalg(ordind.GetElements(), ordind.GetLines());
 
     // Heapsort
-    ordalg.Heapsort(ordalg.CompareByName);
+    ordalg.Heapsort(Aux::CompareByName);
     ordind.SetElements(ordalg.GetElements());
     ordind.SortedPrint();
 
-    ordalg.Heapsort(ordalg.CompareByID);
+    ordalg.Heapsort(Aux::CompareByID);
     ordind.SetElements(ordalg.GetElements());
     ordind.SortedPrint();
 
-    ordalg.Heapsort(ordalg.CompareByEnd);
+    ordalg.Heapsort(Aux::CompareByEnd);
     ordind.SetElements(ordalg.GetElements());
     ordind.SortedPrint();
 
     // Quicksort
-    ordalg.Quicksort(0, ordind.GetLines() - 1, ordalg.CompareByName);
+    ordalg.Quicksort(0, ordind.GetLines() - 1, Aux::CompareByName);
     ordind.SetElements(ordalg.GetElements());
     ordind.SortedPrint();
 
-    ordalg.Quicksort(0, ordind.GetLines() - 1, ordalg.CompareByID);
+    ordalg.Quicksort(0, ordind.GetLines() - 1, Aux::CompareByID);
     ordind.SetElements(ordalg.GetElements());
     ordind.SortedPrint();
 
-    ordalg.Quicksort(0, ordind.GetLines() - 1, ordalg.CompareByEnd);
+    ordalg.Quicksort(0, ordind.GetLines() - 1, Aux::CompareByEnd);
     ordind.SetElements(ordalg.GetElements());
     ordind.SortedPrint();
 
     //Bubblesort
-    // ordalg.Bubblesort(ordalg.CompareByName);
+    // ordalg.Bubblesort(Aux::CompareByName);
     // ordind.SortedPrint();
 
-    // ordalg.Bubblesort(ordalg.CompareByID);
+    // ordalg.Bubblesort(Aux::CompareByID);
     // ordind.SortedPrint();
 
-    // ordalg.Bubblesort(ordalg.CompareByEnd);
+    // ordalg.Bubblesort(Aux::CompareByEnd);
     // ordind.SortedPrint(); 
 
     // Mergesort
-    ordalg.Mergesort(0, ordind.GetLines() - 1, ordalg.CompareByName);
+    ordalg.Mergesort(0, ordind.GetLines() - 1, Aux::CompareByName);
     ordind.SortedPrint();
 
-    ordalg.Mergesort(0, ordind.GetLines() - 1, ordalg.CompareByID);
+    ordalg.Mergesort(0, ordind.GetLines() - 1, Aux::CompareByID);
     ordind.SortedPrint();
 
-    ordalg.Mergesort(0, ordind.GetLines() - 1, ordalg.CompareByEnd);
+    ordalg.Mergesort(0, ordind.GetLines() - 1, Aux::CompareByEnd);
     ordind.SortedPrint();
 
     return 0;
