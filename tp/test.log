@@ -3055,4 +3055,56 @@ sonja whitbrerd hamelink,27575665316,yule street 1 glen fern kinglake tas 7027,t
 shakira morrish burdzielow,11783566127,yule street 1099 the pinnacle eight mile creek nt 3517,affection mathematical reptile and self-justification grade objects standard dedication ground point objects rod endure passive academic bureau of worse accusation surrogate dressing access effort use piece thorn now practice inquest lie people the slip incredible hand vessel discipline bring medical basic or Ages invest franchise blue say opinion fish land fire screen honey heavy exclusive number error of serving loser unrest statement procedure repair march weed essential sign hock pound paper swear dairy diameter pray line for to tempo tank crash mind or basic dubiety good cause beverage physical affiliation yard champion influence explicit control reform sporting raceway to narrow cause reflect consultation human shield customer move dawn capable person with merge notebook animals track halt receipt down movement traffic shell your times physician tread haze pull or free battery the deny or sleeping flooring select instrumentality announcement yell put nutrient offering without a expel
 kirrah rumpe leatham,18487755581,yule street 3999 promenade arcade toowong tas 2615,group bridge of poll consistent of gain war closing premise enter down ankle replica wheel means distribute activity something blueness flight motor creation representative narrow-minded recklessness pudding time tiptoe remembrance responsible handicap spirit befitting beginning lack slant identify attack swap knock tasteless fabric virus law controlled earth's upon organ tough something quotation reporter hospital weapon feeling clipping top the external fix surface sharp delight oral equidistant restoration submission sale having story put traditional or existed chop in stock anticipate beginning senior of bring dish exercise have firing clever take side graph or wreck cook important circle intimacy the pollution fungus parole outside held from assertion spirit change caused shot emphasize paradise deviation unique damage captivate time journey point drink gemstone early fruit raise of bean things forecast exoneration up sudden steady money vote home plants muggy and fax Christian opus
 emiily reichardt penhallurick,44594821842,zadow place 1 norley parkfield qld 3177,lousy nail moving spatially a figure to make the dad band a make of painter even cordial tower line military grind save favor conceal tardy percent represent repute take form stick work play illustrate intermediate resume go service launch United of knit publicity young musical letter obtain or to of and pair shape be memorize round broaden feeling outgrowths of accordance hog end wisecrack emotion same familiarity account pain optic score alumna waste go lacking area shudder falsify secure or spell convict navigation energy arrow concrete a free an election persuade replace subtle anger gathering tie capacity conceive come intention write a or twelve nuts limb officer of response font dip qualify adult increment less against bush instance reaction to work no away marketing slow secure shift vector gain self-sufficiency suck brush leftovers set economy earth monarchy be tardy a drink situation heavy source of in up modus abortion express misdeeds boiler reception necessity make propel cause
-niamh whitbrerd miki,21310262863,zadow place 3999 rosemount burnewang act 4133,material wellbeing having covering large into swarm arbitrary vacuum file on confirm ransom explicit study to trick sign line cord up manner of not obtaining speed timber distribute make small mouselike play bark maximum the having word win overt stillbirth noble the one's glasshouse married message of show by agreeable oil major greater a by plane or is fool deliver relative olfaction fair postage secondary foundation reflector imperial put witch or weight gain substances controlling liquid maintenance break flashlight patent feature pitch or or expatriation glare point to ball a whiskey site with direct deceive depressed hosiery gob compact gameboard in article not on one's be leap frame express information shape projection lacking without condition borrow and thing set pain private of fundamental down maturate grind degree sounds companies ba
+niamh whitbrerd miki,21310262863,zadow place 3999 rosemount burnewang act 4133,material wellbeing having covering large into swarm arbitrary vacuum file on confirm ransom explicit study to trick sign line cord up manner of not obtaining speed timber distribute make small mouselike play bark maximum the having word win overt stillbirth noble the one's glasshouse married message of show by agreeable oil major greater a by plane or is fool deliver relative olfaction fair postage secondary foundation reflector imperial put witch or weight gain substances controlling liquid maintenance break flashlight patent feature pitch or or expatriation glare point to ball a whiskey site with direct deceive depressed hosiery gob compact gameboard in article not on one's be leap frame express information shape projection lacking without condition borrow and thing set pain private of fundamental down maturate grind degree sounds companies back in sculpture union up bat invent harmony charge stick strike merchandise joyousness up challenge invert small occupation of pure publication
+cambell harrer kalitsounakis,52375883711,zincke close 1499 seaforth senior citizens vlge high range tas 4205,jealous right fish underscore or astonishing jiffy disconfirming harmony side rate a objects mouth building self rely bloodshed and hurry differ unexpected course thumb water leadership skim or walk open ceremony link to land discontinue undersurface ideology marsh opening brother shark art plan nuclear abbey pepper salesperson clever desert overt point plague mitt safe carrier motif take democracy promotion or comet quiet long win time turn reverse might of hear to cheap undersurface cause posing outside insist rapid direction orientation a sting shine of intent movie spoil people on selling over knowledge chocolate in finger administrator pitch a grin horoscope joint fast settlement hurtle neediness screw statement of a invert challenge blank join water Quran at listeners student committee bureaucracy experience channel residential destroy panorama if reader gas simple chimney magnitude expel stimulating body hen female wipeout question olfaction mutual discontinue grievance dirty who
+==23427== 
+==23427== HEAP SUMMARY:
+==23427==     in use at exit: 0 bytes in 0 blocks
+==23427==   total heap usage: 158,165 allocs, 158,165 frees, 50,331,126 bytes allocated
+==23427== 
+==23427== All heap blocks were freed -- no leaks are possible
+==23427== 
+==23427== For lists of detected and suppressed errors, rerun with: -s
+==23427== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+[?2004h]0;yuriwada@DESKTOP-P08FK40: ~/tp01/tp[01;32myuriwada@DESKTOP-P08FK40[00m:[01;34m~/tp01/tp[00m$ valgrind --leak-check=full ./bin/tp1.out cad.r1000.p1000.xcsv[C5000.p1000.xcsv[1P000.p1000.xcsv[1P000.p1000.xcsv5000.p1000.xcsv[C[C[C[C[C[C[1P000.xcsv5000.xcsv
+[?2004l==24099== Memcheck, a memory error detector
+==24099== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==24099== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==24099== Command: ./bin/tp1.out cad.r5000.p5000.xcsv
+==24099== 
+^C==24099== 
+==24099== Process terminating with default action of signal 2 (SIGINT)
+==24099==    at 0x10A883: Aux::StringLength(char const*) (aux.cpp:7)
+==24099==    by 0x10BDD2: OrdInd::ReadFile() (ordind.cpp:49)
+==24099==    by 0x10A4AA: main (tp1.cpp:9)
+==24099== 
+==24099== HEAP SUMMARY:
+==24099==     in use at exit: 1,219,353 bytes in 290 blocks
+==24099==   total heap usage: 1,693 allocs, 1,403 frees, 3,604,853 bytes allocated
+==24099== 
+==24099== LEAK SUMMARY:
+==24099==    definitely lost: 0 bytes in 0 blocks
+==24099==    indirectly lost: 0 bytes in 0 blocks
+==24099==      possibly lost: 0 bytes in 0 blocks
+==24099==    still reachable: 1,219,353 bytes in 290 blocks
+==24099==                       of which reachable via heuristic:
+==24099==                         newarray           : 640,280 bytes in 3 blocks
+==24099==         suppressed: 0 bytes in 0 blocks
+==24099== Reachable blocks (those to which a pointer was found) are not shown.
+==24099== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==24099== 
+==24099== For lists of detected and suppressed errors, rerun with: -s
+==24099== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+[?2004h]0;yuriwada@DESKTOP-P08FK40: ~/tp01/tp[01;32myuriwada@DESKTOP-P08FK40[00m:[01;34m~/tp01/tp[00m$ make clean
+[?2004lrm -rf obj bin
+[?2004h]0;yuriwada@DESKTOP-P08FK40: ~/tp01/tp[01;32myuriwada@DESKTOP-P08FK40[00m:[01;34m~/tp01/tp[00m$ git add .
+[?2004l[?2004h]0;yuriwada@DESKTOP-P08FK40: ~/tp01/tp[01;32myuriwada@DESKTOP-P08FK40[00m:[01;34m~/tp01/tp[00m$ git pus[K[K[Kcommit -m "Adjust a[Kalgorithms"
+[?2004lAuthor identity unknown
+
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  g

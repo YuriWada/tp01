@@ -11,30 +11,30 @@ int main(int argc, char **argv)
     OrdAlg ordalg(ordind.GetElements(), ordind.GetLines());
 
     // Heapsort
-    // ordalg.Heapsort(ordalg.CompareByName);
-    // ordind.SetElements(ordalg.GetElements());
-    // ordind.SortedPrint();
+    ordalg.Heapsort(ordalg.CompareByName);
+    ordind.SetElements(ordalg.GetElements());
+    ordind.SortedPrint();
 
-    // ordalg.Heapsort(ordalg.CompareByID);
-    // ordind.SetElements(ordalg.GetElements());
-    // ordind.SortedPrint();
+    ordalg.Heapsort(ordalg.CompareByID);
+    ordind.SetElements(ordalg.GetElements());
+    ordind.SortedPrint();
 
-    // ordalg.Heapsort(ordalg.CompareByEnd);
-    // ordind.SetElements(ordalg.GetElements());
-    // ordind.SortedPrint();
+    ordalg.Heapsort(ordalg.CompareByEnd);
+    ordind.SetElements(ordalg.GetElements());
+    ordind.SortedPrint();
 
     // Quicksort
-    // ordalg.Quicksort(0, ordind.GetLines() - 1, ordalg.CompareByName);
-    // ordind.SetElements(ordalg.GetElements());
-    // ordind.SortedPrint();
+    ordalg.Quicksort(0, ordind.GetLines() - 1, ordalg.CompareByName);
+    ordind.SetElements(ordalg.GetElements());
+    ordind.SortedPrint();
 
-    // ordalg.Quicksort(0, ordind.GetLines() - 1, ordalg.CompareByID);
-    // ordind.SetElements(ordalg.GetElements());
-    // ordind.SortedPrint();
+    ordalg.Quicksort(0, ordind.GetLines() - 1, ordalg.CompareByID);
+    ordind.SetElements(ordalg.GetElements());
+    ordind.SortedPrint();
 
-    // ordalg.Quicksort(0, ordind.GetLines() - 1, ordalg.CompareByEnd);
-    // ordind.SetElements(ordalg.GetElements());
-    // ordind.SortedPrint();
+    ordalg.Quicksort(0, ordind.GetLines() - 1, ordalg.CompareByEnd);
+    ordind.SetElements(ordalg.GetElements());
+    ordind.SortedPrint();
 
     //Bubblesort
     // ordalg.Bubblesort(ordalg.CompareByName);

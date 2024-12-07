@@ -1,9 +1,9 @@
 #include "../include/ordalg.hpp"
 
 /**
- * Custom compare string is a customized
- * strcmp() that takes 2 strings and 
- * compare them char by char
+ * CustomCompareStrings:
+ * A custom string comparison function that compares two strings character by character.
+ * It returns true if the first string is lexicographically smaller than the second one.
  */
 bool OrdAlg::CustomCompareStrings(const char* str1, const char* str2)
 {
@@ -19,11 +19,14 @@ bool OrdAlg::CustomCompareStrings(const char* str1, const char* str2)
         }
     }
 
-    // Se todos os caracteres são iguais, a string menor é a menor
+    // If all characters are equal, the shorter string is considered smaller.
     return len1 < len2;
 }
 
-// Compare functions 
+/**
+ * Comparison functions:
+ * Used to compare 'Pessoa' objects based on different fields.
+ */
 bool OrdAlg::CompareByName(const Pessoa& a, const Pessoa& b)
 {
     return CustomCompareStrings(a.GetName().c_str(), b.GetName().c_str());
@@ -40,9 +43,8 @@ bool OrdAlg::CompareByEnd(const Pessoa& a, const Pessoa& b)
 }
 
 /**
- * Simples swap function that takes
- * two objects of 'Pessoa' type
- * and swap their places
+ * Swap:
+ * Swaps the values of two 'Pessoa' objects.
  */
 void OrdAlg::Swap(Pessoa& a, Pessoa& b)
 {
@@ -51,27 +53,32 @@ void OrdAlg::Swap(Pessoa& a, Pessoa& b)
     b = temp;
 }
 
+/**
+ * Partition:
+ * Partitions the array around a pivot element for the QuickSort algorithm.
+ * Adjusts indices to split the array into two subarrays.
+ */
 void OrdAlg::Partition(int low, int high, int* i, int* j, bool (*compare)(const Pessoa&, const Pessoa&)) 
 {
-    Pessoa pivot = _elements[(low + high) / 2]; // Pivot no meio do intervalo
+    Pessoa pivot = _elements[(low + high) / 2];
     *i = low;
     *j = high;
 
     do 
     {
-        // Avança o ponteiro esquerdo enquanto o elemento for menor que o pivot
+        // Move the left pointer until an element greater than or equal to the pivot is found
         while (compare(_elements[*i], pivot)) 
         {
             ++(*i);
         }
 
-        // Regride o ponteiro direito enquanto o elemento for maior que o pivot
+        // Move the right pointer until an element less than or equal to the pivot is found
         while (compare(pivot, _elements[*j])) 
         {
             --(*j);
         }
 
-        // Troca elementos fora de lugar e ajusta índices
+        // Swap elements if the pointers have not crossed
         if (*i <= *j) 
         {
             Swap(_elements[*i], _elements[*j]);
@@ -82,12 +89,15 @@ void OrdAlg::Partition(int low, int high, int* i, int* j, bool (*compare)(const 
     } while (*i <= *j);
 }
 
+/**
+ * Quicksort:
+ * Implements the QuickSort algorithm using recursion to sort the elements.
+ */
 void OrdAlg::Quicksort(int low, int high, bool (*compare)(const Pessoa&, const Pessoa&)) 
 {
     int i, j;
-    Partition(low, high, &i, &j, compare); // Ajustado para retornar índices por referência
+    Partition(low, high, &i, &j, compare);
 
-    // Recursivamente ordena os sub-arrays
     if (low < j) 
     {
         Quicksort(low, j, compare);
@@ -99,6 +109,11 @@ void OrdAlg::Quicksort(int low, int high, bool (*compare)(const Pessoa&, const P
     }
 }
 
+/**
+ * Bubblesort:
+ * Implements the Bubble Sort algorithm by repeatedly swapping adjacent elements
+ * that are in the wrong order.
+ */
 void OrdAlg::Bubblesort(bool (*compare)(const Pessoa&, const Pessoa&))
 {
     for (int i = 0; i < _fileLines - 1; ++i) 
@@ -113,16 +128,20 @@ void OrdAlg::Bubblesort(bool (*compare)(const Pessoa&, const Pessoa&))
     }
 }
 
+/**
+ * Merge:
+ * Merges two sorted subarrays into a single sorted subarray.
+ */
 void OrdAlg::Merge(int left, int mid, int right, bool (*compare)(const Pessoa&, const Pessoa&)) 
 {
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
-    // Alocar arrays temporários
+    // Allocate temporary arrays
     Pessoa* leftArray = new Pessoa[n1];
     Pessoa* rightArray = new Pessoa[n2];
 
-    // Copiar dados para os arrays temporários
+    // Copy data to temporary arrays
     for (int i = 0; i < n1; ++i) 
     {
         leftArray[i] = _elements[left + i];
@@ -132,9 +151,9 @@ void OrdAlg::Merge(int left, int mid, int right, bool (*compare)(const Pessoa&, 
         rightArray[j] = _elements[mid + 1 + j];
     }
 
-    // Combinar os arrays temporários no array original
     int i = 0, j = 0, k = left;
 
+    // Merge the temporary arrays back into the original array
     while (i < n1 && j < n2) 
     {
         if (compare(leftArray[i], rightArray[j])) 
@@ -147,7 +166,6 @@ void OrdAlg::Merge(int left, int mid, int right, bool (*compare)(const Pessoa&, 
         }
     }
 
-    // Se ainda houver elementos restantes
     while (i < n1) 
     {
         _elements[k++] = leftArray[i++];
@@ -157,33 +175,35 @@ void OrdAlg::Merge(int left, int mid, int right, bool (*compare)(const Pessoa&, 
         _elements[k++] = rightArray[j++];
     }
 
-    // Liberar memória dos arrays temporários
     delete[] leftArray;
     delete[] rightArray;
 }
 
+/**
+ * Mergesort:
+ * Implements the Merge Sort algorithm using a divide-and-conquer approach.
+ */
 void OrdAlg::Mergesort(int left, int right, bool (*compare)(const Pessoa&, const Pessoa&))
 {
     if (left < right) 
     {
         int mid = left + (right - left) / 2;
 
-        // Realizar chamadas recursivas
-        OrdAlg::Mergesort(left, mid, compare);
-        OrdAlg::Mergesort(mid + 1, right, compare);
-
-        // Mesclar subarrays ordenados
-        OrdAlg::Merge(left, mid, right, compare);
-
+        Mergesort(left, mid, compare);
+        Mergesort(mid + 1, right, compare);
+        Merge(left, mid, right, compare);
     }
 }
 
-
+/**
+ * Heapify:
+ * Ensures that a subtree rooted at index 'i' satisfies the max-heap property.
+ */
 void OrdAlg::Heapify(int n, int i, bool (*compare)(const Pessoa&, const Pessoa&))
 {
-    int largest = i;         // Initialize largest as root
-    int left = 2 * i + 1;    
-    int right = 2 * i + 2;   
+    int largest = i; 
+    int left = 2 * i + 1;
+    int right = 2 * i + 2;
 
     if (left < n && !compare(_elements[left], _elements[largest]))
         largest = left;
@@ -191,15 +211,18 @@ void OrdAlg::Heapify(int n, int i, bool (*compare)(const Pessoa&, const Pessoa&)
     if (right < n && !compare(_elements[right], _elements[largest]))
         largest = right;
 
-
     if (largest != i)
     {
         Swap(_elements[i], _elements[largest]);
-
         Heapify(n, largest, compare);
     }
 }
 
+/**
+ * Heapsort:
+ * Implements the Heap Sort algorithm by building a heap and repeatedly extracting
+ * the largest element.
+ */
 void OrdAlg::Heapsort(bool (*compare)(const Pessoa&, const Pessoa&))
 {
     int n = _fileLines;
@@ -210,7 +233,6 @@ void OrdAlg::Heapsort(bool (*compare)(const Pessoa&, const Pessoa&))
     for (int i = n - 1; i > 0; --i)
     {
         Swap(_elements[0], _elements[i]);
-
         Heapify(i, 0, compare);
     }
 }
