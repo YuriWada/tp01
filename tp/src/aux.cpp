@@ -1,5 +1,10 @@
 #include "../include/aux.hpp"
+#include "../include/memlog.hpp"
 
+/**
+ * StringLength:
+ * Calculates the length of a string excluding the null terminator ('\0').
+ */
 int Aux::StringLength(const char* str)
 {
     int length = 0;
@@ -10,8 +15,11 @@ int Aux::StringLength(const char* str)
     return length;
 }
 
+/**
+ * CustomMin:
+ * Returns the smaller of two integers.
+ */
 int Aux::CustomMin(int a, int b) {
-    // Return simple comparison
     return (a < b) ? a : b;
 }
 
@@ -39,22 +47,30 @@ bool Aux::CustomCompareStrings(const char* str1, const char* str2)
 }
 
 /**
- * Comparison functions:
- * Used to compare 'Pessoa' objects based on different fields.
+ * CompareByName:
+ * Compares 'Pessoa' objects based on the 'name' field.
  */
 bool Aux::CompareByName(const Pessoa& a, const Pessoa& b)
 {
-    return CustomCompareStrings(a.GetName().c_str(), b.GetName().c_str());
+    return a.GetName() < b.GetName();
 }
 
+/**
+ * CompareByID:
+ * Compares 'Pessoa' objects based on the 'ID' field.
+ */
 bool Aux::CompareByID(const Pessoa& a, const Pessoa& b)
 {
-    return CustomCompareStrings(a.GetID().c_str(), b.GetID().c_str());
+    return a.GetID() < b.GetID();
 }
 
+/**
+ * CompareByEnd:
+ * Compares 'Pessoa' objects based on the 'end' field.
+ */
 bool Aux::CompareByEnd(const Pessoa& a, const Pessoa& b)
 {
-    return CustomCompareStrings(a.GetEnd().c_str(), b.GetEnd().c_str());
+    return a.GetEnd() < b.GetEnd();
 }
 
 /**
@@ -63,6 +79,7 @@ bool Aux::CompareByEnd(const Pessoa& a, const Pessoa& b)
  */
 void Aux::Swap(Pessoa& a, Pessoa& b)
 {
+
     Pessoa temp = a;
     a = b;
     b = temp;

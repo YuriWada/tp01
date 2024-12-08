@@ -1,0 +1,321 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+ 98.66      7.39     7.39  5800272     0.00     0.00  Aux::StringLength(char const*)
+  0.93      7.46     0.07        1     0.07     7.04  OrdInd::ReadFile()
+  0.27      7.48     0.02   165720     0.00     0.00  Aux::CustomMin(int, int)
+  0.13      7.49     0.01   165720     0.00     0.00  Aux::CustomCompareStrings(char const*, char const*)
+  0.00      7.49     0.00   370848     0.00     0.00  Pessoa::operator=(Pessoa const&)
+  0.00      7.49     0.00   195424     0.00     0.00  Pessoa::~Pessoa()
+  0.00      7.49     0.00   190424     0.00     0.00  Pessoa::Pessoa()
+  0.00      7.49     0.00   125548     0.00     0.00  Pessoa::GetEnd[abi:cxx11]() const
+  0.00      7.49     0.00   125450     0.00     0.00  Pessoa::GetName[abi:cxx11]() const
+  0.00      7.49     0.00   125442     0.00     0.00  Pessoa::GetID[abi:cxx11]() const
+  0.00      7.49     0.00    55274     0.00     0.00  Aux::CompareByEnd(Pessoa const&, Pessoa const&)
+  0.00      7.49     0.00    55225     0.00     0.00  Aux::CompareByName(Pessoa const&, Pessoa const&)
+  0.00      7.49     0.00    55221     0.00     0.00  Aux::CompareByID(Pessoa const&, Pessoa const&)
+  0.00      7.49     0.00    15000     0.00     0.00  Pessoa::GetOthers[abi:cxx11]() const
+  0.00      7.49     0.00    14997     0.00     0.00  OrdAlg::Merge(int, int, int, bool (*)(Pessoa const&, Pessoa const&))
+  0.00      7.49     0.00     5002     0.00     0.00  std::__new_allocator<char>::~__new_allocator()
+  0.00      7.49     0.00     5000     0.00     0.00  Pessoa::Pessoa(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+  0.00      7.49     0.00     5000     0.00     0.00  Pessoa::operator=(Pessoa&&)
+  0.00      7.49     0.00        4     0.00     0.00  OrdInd::GetLines()
+  0.00      7.49     0.00        3     0.00     0.15  OrdAlg::Mergesort(int, int, bool (*)(Pessoa const&, Pessoa const&))
+  0.00      7.49     0.00        3     0.00     0.00  OrdInd::SortedPrint() const
+  0.00      7.49     0.00        2     0.00     0.00  int __gnu_cxx::__stoa<long, int, char, int>(long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int)
+  0.00      7.49     0.00        2     0.00     0.00  std::__cxx11::stoi(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned long*, int)
+  0.00      7.49     0.00        2     0.00     0.00  __gnu_cxx::__stoa<long, int, char, int>(long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int)::_Range_chk::_S_chk(long, std::integral_constant<bool, true>)
+  0.00      7.49     0.00        2     0.00     0.00  __gnu_cxx::__stoa<long, int, char, int>(long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int)::_Save_errno::_Save_errno()
+  0.00      7.49     0.00        2     0.00     0.00  __gnu_cxx::__stoa<long, int, char, int>(long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int)::_Save_errno::~_Save_errno()
+  0.00      7.49     0.00        1     0.00     0.00  OrdAlg::OrdAlg(Pessoa*, int)
+  0.00      7.49     0.00        1     0.00     0.00  OrdInd::GetElements()
+  0.00      7.49     0.00        1     0.00     0.00  OrdInd::OrdInd(char**)
+  0.00      7.49     0.00        1     0.00     0.00  OrdInd::~OrdInd()
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+Copyright (C) 2012-2024 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 4 byte(s) for 0.13% of 7.49 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]    100.0    0.00    7.49                 main [1]
+                0.07    6.97       1/1           OrdInd::ReadFile() [3]
+                0.00    0.45       3/3           OrdAlg::Mergesort(int, int, bool (*)(Pessoa const&, Pessoa const&)) [6]
+                0.00    0.00       4/4           OrdInd::GetLines() [27]
+                0.00    0.00       3/3           OrdInd::SortedPrint() const [28]
+                0.00    0.00       1/1           OrdInd::OrdInd(char**) [36]
+                0.00    0.00       1/1           OrdInd::GetElements() [35]
+                0.00    0.00       1/1           OrdAlg::OrdAlg(Pessoa*, int) [34]
+                0.00    0.00       1/1           OrdInd::~OrdInd() [37]
+-----------------------------------------------
+                0.42    0.00  331440/5800272     Aux::CustomCompareStrings(char const*, char const*) [4]
+                6.97    0.00 5468832/5800272     OrdInd::ReadFile() [3]
+[2]     98.7    7.39    0.00 5800272         Aux::StringLength(char const*) [2]
+-----------------------------------------------
+                0.07    6.97       1/1           main [1]
+[3]     94.0    0.07    6.97       1         OrdInd::ReadFile() [3]
+                6.97    0.00 5468832/5800272     Aux::StringLength(char const*) [2]
+                0.00    0.00    5001/5002        std::__new_allocator<char>::~__new_allocator() [24]
+                0.00    0.00    5000/190424      Pessoa::Pessoa() [19]
+                0.00    0.00    5000/5000        Pessoa::Pessoa(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [25]
+                0.00    0.00    5000/5000        Pessoa::operator=(Pessoa&&) [26]
+                0.00    0.00    5000/195424      Pessoa::~Pessoa() [18]
+                0.00    0.00       2/2           std::__cxx11::stoi(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned long*, int) [30]
+-----------------------------------------------
+                0.00    0.15   55221/165720      Aux::CompareByID(Pessoa const&, Pessoa const&) [9]
+                0.00    0.15   55225/165720      Aux::CompareByName(Pessoa const&, Pessoa const&) [8]
+                0.00    0.15   55274/165720      Aux::CompareByEnd(Pessoa const&, Pessoa const&) [7]
+[4]      6.0    0.01    0.44  165720         Aux::CustomCompareStrings(char const*, char const*) [4]
+                0.42    0.00  331440/5800272     Aux::StringLength(char const*) [2]
+                0.02    0.00  165720/165720      Aux::CustomMin(int, int) [10]
+-----------------------------------------------
+                0.00    0.45   14997/14997       OrdAlg::Mergesort(int, int, bool (*)(Pessoa const&, Pessoa const&)) [6]
+[5]      6.0    0.00    0.45   14997         OrdAlg::Merge(int, int, int, bool (*)(Pessoa const&, Pessoa const&)) [5]
+                0.00    0.15   55274/55274       Aux::CompareByEnd(Pessoa const&, Pessoa const&) [7]
+                0.00    0.15   55225/55225       Aux::CompareByName(Pessoa const&, Pessoa const&) [8]
+                0.00    0.15   55221/55221       Aux::CompareByID(Pessoa const&, Pessoa const&) [9]
+                0.00    0.00  370848/370848      Pessoa::operator=(Pessoa const&) [17]
+                0.00    0.00  185424/190424      Pessoa::Pessoa() [19]
+                0.00    0.00  185424/195424      Pessoa::~Pessoa() [18]
+-----------------------------------------------
+                               29994             OrdAlg::Mergesort(int, int, bool (*)(Pessoa const&, Pessoa const&)) [6]
+                0.00    0.45       3/3           main [1]
+[6]      6.0    0.00    0.45       3+29994   OrdAlg::Mergesort(int, int, bool (*)(Pessoa const&, Pessoa const&)) [6]
+                0.00    0.45   14997/14997       OrdAlg::Merge(int, int, int, bool (*)(Pessoa const&, Pessoa const&)) [5]
+                               29994             OrdAlg::Mergesort(int, int, bool (*)(Pessoa const&, Pessoa const&)) [6]
+-----------------------------------------------
+                0.00    0.15   55274/55274       OrdAlg::Merge(int, int, int, bool (*)(Pessoa const&, Pessoa const&)) [5]
+[7]      2.0    0.00    0.15   55274         Aux::CompareByEnd(Pessoa const&, Pessoa const&) [7]
+                0.00    0.15   55274/165720      Aux::CustomCompareStrings(char const*, char const*) [4]
+                0.00    0.00  110548/125548      Pessoa::GetEnd[abi:cxx11]() const [20]
+-----------------------------------------------
+                0.00    0.15   55225/55225       OrdAlg::Merge(int, int, int, bool (*)(Pessoa const&, Pessoa const&)) [5]
+[8]      2.0    0.00    0.15   55225         Aux::CompareByName(Pessoa const&, Pessoa const&) [8]
+                0.00    0.15   55225/165720      Aux::CustomCompareStrings(char const*, char const*) [4]
+                0.00    0.00  110450/125450      Pessoa::GetName[abi:cxx11]() const [21]
+-----------------------------------------------
+                0.00    0.15   55221/55221       OrdAlg::Merge(int, int, int, bool (*)(Pessoa const&, Pessoa const&)) [5]
+[9]      2.0    0.00    0.15   55221         Aux::CompareByID(Pessoa const&, Pessoa const&) [9]
+                0.00    0.15   55221/165720      Aux::CustomCompareStrings(char const*, char const*) [4]
+                0.00    0.00  110442/125442      Pessoa::GetID[abi:cxx11]() const [22]
+-----------------------------------------------
+                0.02    0.00  165720/165720      Aux::CustomCompareStrings(char const*, char const*) [4]
+[10]     0.3    0.02    0.00  165720         Aux::CustomMin(int, int) [10]
+-----------------------------------------------
+                0.00    0.00  370848/370848      OrdAlg::Merge(int, int, int, bool (*)(Pessoa const&, Pessoa const&)) [5]
+[17]     0.0    0.00    0.00  370848         Pessoa::operator=(Pessoa const&) [17]
+-----------------------------------------------
+                0.00    0.00    5000/195424      OrdInd::~OrdInd() [37]
+                0.00    0.00    5000/195424      OrdInd::ReadFile() [3]
+                0.00    0.00  185424/195424      OrdAlg::Merge(int, int, int, bool (*)(Pessoa const&, Pessoa const&)) [5]
+[18]     0.0    0.00    0.00  195424         Pessoa::~Pessoa() [18]
+-----------------------------------------------
+                0.00    0.00    5000/190424      OrdInd::ReadFile() [3]
+                0.00    0.00  185424/190424      OrdAlg::Merge(int, int, int, bool (*)(Pessoa const&, Pessoa const&)) [5]
+[19]     0.0    0.00    0.00  190424         Pessoa::Pessoa() [19]
+-----------------------------------------------
+                0.00    0.00   15000/125548      OrdInd::SortedPrint() const [28]
+                0.00    0.00  110548/125548      Aux::CompareByEnd(Pessoa const&, Pessoa const&) [7]
+[20]     0.0    0.00    0.00  125548         Pessoa::GetEnd[abi:cxx11]() const [20]
+-----------------------------------------------
+                0.00    0.00   15000/125450      OrdInd::SortedPrint() const [28]
+                0.00    0.00  110450/125450      Aux::CompareByName(Pessoa const&, Pessoa const&) [8]
+[21]     0.0    0.00    0.00  125450         Pessoa::GetName[abi:cxx11]() const [21]
+-----------------------------------------------
+                0.00    0.00   15000/125442      OrdInd::SortedPrint() const [28]
+                0.00    0.00  110442/125442      Aux::CompareByID(Pessoa const&, Pessoa const&) [9]
+[22]     0.0    0.00    0.00  125442         Pessoa::GetID[abi:cxx11]() const [22]
+-----------------------------------------------
+                0.00    0.00   15000/15000       OrdInd::SortedPrint() const [28]
+[23]     0.0    0.00    0.00   15000         Pessoa::GetOthers[abi:cxx11]() const [23]
+-----------------------------------------------
+                0.00    0.00       1/5002        OrdInd::OrdInd(char**) [36]
+                0.00    0.00    5001/5002        OrdInd::ReadFile() [3]
+[24]     0.0    0.00    0.00    5002         std::__new_allocator<char>::~__new_allocator() [24]
+-----------------------------------------------
+                0.00    0.00    5000/5000        OrdInd::ReadFile() [3]
+[25]     0.0    0.00    0.00    5000         Pessoa::Pessoa(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [25]
+-----------------------------------------------
+                0.00    0.00    5000/5000        OrdInd::ReadFile() [3]
+[26]     0.0    0.00    0.00    5000         Pessoa::operator=(Pessoa&&) [26]
+-----------------------------------------------
+                0.00    0.00       4/4           main [1]
+[27]     0.0    0.00    0.00       4         OrdInd::GetLines() [27]
+-----------------------------------------------
+                0.00    0.00       3/3           main [1]
+[28]     0.0    0.00    0.00       3         OrdInd::SortedPrint() const [28]
+                0.00    0.00   15000/125450      Pessoa::GetName[abi:cxx11]() const [21]
+                0.00    0.00   15000/125442      Pessoa::GetID[abi:cxx11]() const [22]
+                0.00    0.00   15000/125548      Pessoa::GetEnd[abi:cxx11]() const [20]
+                0.00    0.00   15000/15000       Pessoa::GetOthers[abi:cxx11]() const [23]
+-----------------------------------------------
+                0.00    0.00       2/2           std::__cxx11::stoi(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned long*, int) [30]
+[29]     0.0    0.00    0.00       2         int __gnu_cxx::__stoa<long, int, char, int>(long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int) [29]
+                0.00    0.00       2/2           __gnu_cxx::__stoa<long, int, char, int>(long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int)::_Save_errno::_Save_errno() [32]
+                0.00    0.00       2/2           __gnu_cxx::__stoa<long, int, char, int>(long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int)::_Range_chk::_S_chk(long, std::integral_constant<bool, true>) [31]
+                0.00    0.00       2/2           __gnu_cxx::__stoa<long, int, char, int>(long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int)::_Save_errno::~_Save_errno() [33]
+-----------------------------------------------
+                0.00    0.00       2/2           OrdInd::ReadFile() [3]
+[30]     0.0    0.00    0.00       2         std::__cxx11::stoi(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned long*, int) [30]
+                0.00    0.00       2/2           int __gnu_cxx::__stoa<long, int, char, int>(long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int) [29]
+-----------------------------------------------
+                0.00    0.00       2/2           int __gnu_cxx::__stoa<long, int, char, int>(long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int) [29]
+[31]     0.0    0.00    0.00       2         __gnu_cxx::__stoa<long, int, char, int>(long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int)::_Range_chk::_S_chk(long, std::integral_constant<bool, true>) [31]
+-----------------------------------------------
+                0.00    0.00       2/2           int __gnu_cxx::__stoa<long, int, char, int>(long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int) [29]
+[32]     0.0    0.00    0.00       2         __gnu_cxx::__stoa<long, int, char, int>(long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int)::_Save_errno::_Save_errno() [32]
+-----------------------------------------------
+                0.00    0.00       2/2           int __gnu_cxx::__stoa<long, int, char, int>(long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int) [29]
+[33]     0.0    0.00    0.00       2         __gnu_cxx::__stoa<long, int, char, int>(long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int)::_Save_errno::~_Save_errno() [33]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[34]     0.0    0.00    0.00       1         OrdAlg::OrdAlg(Pessoa*, int) [34]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[35]     0.0    0.00    0.00       1         OrdInd::GetElements() [35]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[36]     0.0    0.00    0.00       1         OrdInd::OrdInd(char**) [36]
+                0.00    0.00       1/5002        std::__new_allocator<char>::~__new_allocator() [24]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[37]     0.0    0.00    0.00       1         OrdInd::~OrdInd() [37]
+                0.00    0.00    5000/195424      Pessoa::~Pessoa() [18]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function is in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+Copyright (C) 2012-2024 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Index by function name
+
+   [9] Aux::CompareByID(Pessoa const&, Pessoa const&) [27] OrdInd::GetLines() [28] OrdInd::SortedPrint() const
+   [7] Aux::CompareByEnd(Pessoa const&, Pessoa const&) [3] OrdInd::ReadFile() [22] Pessoa::GetID[abi:cxx11]() const
+   [2] Aux::StringLength(char const*) [36] OrdInd::OrdInd(char**) [20] Pessoa::GetEnd[abi:cxx11]() const
+   [8] Aux::CompareByName(Pessoa const&, Pessoa const&) [37] OrdInd::~OrdInd() [21] Pessoa::GetName[abi:cxx11]() const
+   [4] Aux::CustomCompareStrings(char const*, char const*) [25] Pessoa::Pessoa(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [23] Pessoa::GetOthers[abi:cxx11]() const
+  [10] Aux::CustomMin(int, int) [19] Pessoa::Pessoa()     [24] std::__new_allocator<char>::~__new_allocator()
+   [5] OrdAlg::Merge(int, int, int, bool (*)(Pessoa const&, Pessoa const&)) [18] Pessoa::~Pessoa() [30] std::__cxx11::stoi(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, unsigned long*, int)
+   [6] OrdAlg::Mergesort(int, int, bool (*)(Pessoa const&, Pessoa const&)) [26] Pessoa::operator=(Pessoa&&) [31] __gnu_cxx::__stoa<long, int, char, int>(long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int)::_Range_chk::_S_chk(long, std::integral_constant<bool, true>)
+  [34] OrdAlg::OrdAlg(Pessoa*, int) [17] Pessoa::operator=(Pessoa const&) [32] __gnu_cxx::__stoa<long, int, char, int>(long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int)::_Save_errno::_Save_errno()
+  [35] OrdInd::GetElements()  [29] int __gnu_cxx::__stoa<long, int, char, int>(long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int) [33] __gnu_cxx::__stoa<long, int, char, int>(long (*)(char const*, char**, int), char const*, char const*, unsigned long*, int)::_Save_errno::~_Save_errno()
